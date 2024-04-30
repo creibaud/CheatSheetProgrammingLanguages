@@ -18,7 +18,7 @@
 - [Preprocessor Directives](#Preprocessor-Directives)
 - [Memory Management](#Memory-Management)
 - [Error Handling](#Error-Handling)
-- [Miscellaneous](#Miscellaneous)
+- [Structures of the Project](#Structures-of-the-Project)
 
 ## Variables
 - **Declaration**:
@@ -1785,7 +1785,7 @@ So you have two options to define this type of macro:
 ## Memory Management
 Memory management is used to allocate and deallocate memory dynamically. Memory management is used to allocate memory at runtime and deallocate memory when it is no longer needed.
 - **Allocation**:
-    When you want to allocate memory you have to use the malloc function. The malloc function is used to allocate memory dynamically.
+    When you want to allocate memory you have to use the `malloc` function. The `malloc` function is used to allocate memory dynamically.
     ```c
     malloc([size]);
     ```
@@ -1794,3 +1794,275 @@ Memory management is used to allocate and deallocate memory dynamically. Memory 
         int *ptr = (int *)malloc(sizeof(int));
         ```
     The size parameter is used to specify the size of the memory to be allocated. The sizeof operator is used to determine the size of the data type.
+
+    You can also use the `calloc` function to allocate memory and initialize it to zero.
+    ```c
+    calloc([count], [size]);
+    ```
+    - Example:
+        ```c
+        int *ptr = (int *)calloc(1, sizeof(int));
+        ```
+    Because the `calloc` function initializes the memory to zero, it is slower than the `malloc` function. `malloc` function allocates memory but does not initialize it, so you have random values in the memory.
+
+    You can also use the `realloc` function to reallocate memory.
+    ```c
+    realloc([ptr], [size]);
+    ```
+    - Example:
+        ```c
+        int *ptr = (int *)malloc(sizeof(int));
+        ptr = (int *)realloc(ptr, 2 * sizeof(int));
+        ```
+    The `realloc` function is used to change the size of the memory block pointed to by the pointer. The size parameter is used to specify the new size of the memory block.
+- **Deallocation**:
+    When you want to deallocate memory you have to use the `free` function. The `free` function is used to deallocate memory.
+    ```c
+    free([ptr]);
+    ```
+    - Example:
+        ```c
+        int *ptr = (int *)malloc(sizeof(int));
+        free(ptr);
+        ```
+    The `free` function is used to deallocate memory that was allocated dynamically. The pointer parameter is used to specify the memory block to be deallocated.
+**IMPORTANT!** When you allocate memory dynamically you have to deallocate it when you no longer need it. If you don't deallocate the memory you will have a memory leak. A memory leak is a situation where memory is allocated but not deallocated, so the memory is not available for other processes.
+The use of dynamic memory allocation is to allocate memory at runtime when you don't know the size of the memory at compile time. For example, when you want to read a file and store the data in memory, you don't know the size of the data at compile time, so you have to allocate memory dynamically.
+In a short way, went you need for a short time a memory you have to use the dynamic memory allocation. Went you need for a long time a memory you have to use the static memory allocation (like common variables).
+## Error Handling
+Error handling is used to handle errors that occur during the execution of a program. Error handling is used to prevent the program from crashing when an error occurs.
+- **Error Codes**:
+    When you want to handle errors you have to use error codes. Error codes are used to identify errors that occur during the execution of a program.
+    ```c
+    [type] [name] = [value];
+    ```
+    - Example:
+        ```c
+        int error = 1;
+        ```
+    You can also use predefined error codes.
+    ```c
+    [type] [name] = [error];
+    ```
+    - Example:
+        ```c
+        int error = errno;
+        ```
+    The `errno` variable is used to store the error code of the last error that occurred.
+- **Error Handling**:
+    When you want to handle errors you have to use the `perror` function. The `perror` function is used to print an error message to the standard error stream.
+    ```c
+    perror("[message]");
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        if (file == NULL) {
+            perror("Error");
+        }
+        ```
+- **Error Messages**:
+    When you want to get an error message you have to use the `strerror` function. The `strerror` function is used to get an error message from an error code.
+    ```c
+    strerror([error]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        if (file == NULL) {
+            printf("%s\n", strerror(errno));
+        }
+        ```
+- **Exit**:
+    When you want to exit the program you have to use the `exit` function. The `exit` function is used to terminate the program.
+    ```c
+    exit([status]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        if (file == NULL) {
+            perror("Error");
+            exit(1);
+        }
+        ```
+    The status parameter is used to specify the exit status of the program. The exit status is used to indicate the success or failure of the program. The exit status 0 indicates success, while the exit status 1 indicates failure.
+
+    You can also use the `EXIT_SUCCESS` and `EXIT_FAILURE` macros to specify the exit status.
+    ```c
+    exit(EXIT_SUCCESS);
+    exit(EXIT_FAILURE);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        if (file == NULL) {
+            perror("Error");
+            exit(EXIT_FAILURE);
+        }
+        exit(EXIT_SUCCESS);
+        ```
+**IMPORTANT!** When you handle errors you have to print an error message to the standard error stream. The standard error stream is used to print error messages to the console. The standard error stream is different from the standard output stream. The standard output stream is used to print normal output to the console.
+## Structures of the Project
+When you want to create a project you need to have a good structure.
+In C, the common structure of the project is separated into different directories:
+- **include**:
+    The include directory is used to store the header files of the project. The header files contain the declarations of the structures, enumerations, functions, etc...
+- **src**:
+    The src directory is used to store the source files of the project. The source files contain the definitions of the structures, enumerations, functions, etc...
+- **lib**:
+    The lib directory is used to store the libraries of the project. The libraries contain the compiled code of the project.
+- **bin**:
+    The bin directory is used to store the executable files of the project. The executable files contain the compiled code of the project.
+- **obj**:
+    The obj directory is used to store the object files of the project. The object files contain the compiled code of the project.
+- **doc**:
+    The doc directory is used to store the documentation of the project. The documentation contains the description of the structures, enumerations, functions, etc...
+- **test**:
+    The test directory is used to store the test files of the project. The test files contain the test cases of the project.
+- **dep**:
+    The dep directory is used to store the dependencies of the project. The dependencies contain the libraries of the project.
+- Makefile:
+    The Makefile is used to compile the project. The Makefile contains the rules to compile the project.
+- Doxyfile:
+    The Doxyfile is used to generate the documentation of the project. The Doxyfile contains the configuration of the documentation.
+- README.md:
+    The README.md is used to describe the project. The README.md contains the description of the project.
+
+This project structure is the complete one. But you can use only the include, src, and Makefile directories to create a simple project.
+And if you use Visual Studio you don't need to create the project structure because Visual Studio creates it for you.
+And you don't need to create the Makefile because Visual Studio compiles the project for you.
+## Makefile
+The Makefile is created at the root of the project. The Makefile contains the rules to compile the project.
+- **Variables**:
+    The variables are used to store the values that are used in the rules.
+    ```makefile
+    [name] = [value]
+    ```
+    - Example:
+        ```makefile
+        CC = gcc
+        CFLAGS = -Wall -Wextra -Werror
+        ```
+- **Rules**:
+    The rules are used to compile the project. The rules contain the commands to compile the project.
+    ```makefile
+    [target]: [dependencies]
+        [command]
+    ```
+    - Example:
+        ```makefile
+        main: main.o point.o
+            $(CC) $(CFLAGS) -o main main.o point.o
+        ```
+    The target is the name of the executable file. The dependencies are the object files. The command is the command to compile the project.
+- **Phony**:
+    The phony is used to specify the rules that are not files.
+    ```makefile
+    .PHONY: [name]
+    ```
+    - Example:
+        ```makefile
+        clean:
+            rm -f *.o main
+
+        .PHONY: clean
+        ```
+    The clean rule is used to clean the project. The clean rule is used to remove the object files and the executable file.
+- **Automatic Variables**:
+    The automatic variables are used to store the values that are used in the rules.
+    ```makefile
+    $@ - The target
+    $< - The first dependency
+    $^ - All the dependencies
+    ```
+    - Example:
+        ```makefile
+        main: main.o point.o
+            $(CC) $(CFLAGS) -o $@ $^
+        ```
+    The automatic variables are used to simplify the rules. The automatic variables are used to avoid repeating the values.
+- **Example of a complete Makefile**:
+```makefile
+CC = gcc
+CFLAGS = --std=c99 -Wall -Werror -Iinclude
+
+APP_NAME = main
+
+DEPS = $(wildcard include/*.h)
+SRC = $(wildcard src/*.c)
+OBJ = $(patsubst src/%.c,obj/%.o,$(SRC))
+TESTS = $(wildcard tests/*.c)
+TEST_OBJ = $(TESTS:.c=)
+
+obj/%.o: src/%.c $(DEPS)
+	mkdir -p obj
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+all: compile-app compile-tests
+
+compile-app: $(APP_NAME)
+
+compile-tests: $(TEST_OBJ)
+
+install:
+	sudo apt update
+	sudo apt upgrade -y
+	sudo apt install valgrind -y
+	sudo apt install doxygen -y
+	python -m venv venv
+	venv/bin/pip install pandas
+	venv/bin/pip install matplotlib
+
+$(APP_NAME): $(OBJ)
+	mkdir -p bin/app
+	$(CC) -o bin/app/$(APP_NAME) $^ $(CFLAGS)
+
+tests/%: tests/%.c $(DEPS) $(filter-out src/main.c, $(SRC))
+	mkdir -p bin/tests
+	$(CC) -o bin/tests/$* $^ $(CFLAGS)
+
+launch-app:
+	valgrind --leak-check=full --show-leak-kinds=all -s ./bin/app/$(APP_NAME)
+
+launch-tests:
+	for test in bin/tests/*; do $$test upload/map.txt; done
+
+doc:
+	doxygen Doxyfile
+	cd doc/latex/ && make
+	cd ../..
+	cp doc/latex/refman.pdf doc/doc.pdf
+
+clean-obj:
+	rm -f obj/*.o
+
+clean-exe:
+	rm -f bin/app/$(APP_NAME)
+	rm -f bin/tests/*
+
+clean-cvs:
+	rm -f data/csv/*
+
+clean-plot:
+	rm -f data/plot/*
+
+clean-generated:
+	rm -f generated/*
+
+clean-upload:
+	rm -f upload/*
+
+clean-doc:
+	rm -f doc/*
+
+full-clean: clean-obj clean-exe clean-cvs clean-plot clean-generated clean-upload clean-doc
+
+git-push:
+	git add .
+	read -p "Enter commit message: " message; \
+	git commit -m "$$message"
+	git push
+
+.PHONY: all compile-app compile-tests launch-app launch-tests doc clean-obj clean-exe clean-cvs clean-plot clean-generated clean-upload clean-doc full-clean git-push
+```
