@@ -61,7 +61,7 @@
         const int a = 1;
         ```
 - **Global Variable**:
-    Same as local variable but declared outside of any function (at the top of the file and generally before the main function or in a header file).
+    Same as local variable but declared outside of any function (at the top of the file and generally before the main function or in a header file (.h)).
 
 ## Data Types
 - **Basic Data Types**:
@@ -428,3 +428,354 @@
             int a = 5 >> 1; // 2
             ```
 ## Control Statements
+- **If Statement**:
+    The if statement is used to execute a block of code only if a condition is true.
+    ```c
+    if (condition) {
+        // code
+    }
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 1) {
+            printf("True");
+        }
+        ```
+    You can also have the single line if statement. But it is recommended to use braces to avoid confusion. You can use it when you have only one statement to execute.
+    ```c
+    if (condition) statement;
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 1) printf("True");
+        ```
+- **If-Else Statement**:
+    The if-else statement is used to execute a block of code if the condition is true and another block of code if the condition is false.
+    ```c
+    if (condition) {
+        // code
+    } else {
+        // code
+    }
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 2) {
+            printf("True");
+        } else {
+            printf("False");
+        }
+        ```
+    You can also have multiple else-if statements.
+    ```c
+    if (condition1) {
+        // code
+    } else if (condition2) {
+        // code
+    } else {
+        // code
+    }
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 2) {
+            printf("True");
+        } else if (a == 1) {
+            printf("False");
+        } else {
+            printf("None");
+        }
+        ```
+    You can also have the single line if-else statement. But it is recommended to use braces to avoid confusion. You can use it when you have only one statement to execute and that the statement and the condition are short.
+    ```c
+    if (condition) statement1; else statement2;
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 2) printf("True"); else printf("False");
+        ```
+    Or you can also use the ternary operator for the same purpose. That is better than the single line if-else statement.
+    ```c
+    condition ? statement1 : statement2;
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        a == 2 ? printf("True") : printf("False");
+        ```
+- **Switch Statement**:
+    The switch statement is used to execute a block of code based on the value of a variable.
+    ```c
+    switch (variable) {
+        case value1:
+            // code
+            break;
+        case value2:
+            // code
+            break;
+        ...
+        default:
+            // code
+            break;
+    }
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        switch (a) {
+            case 1:
+                printf("One");
+                break;
+            case 2:
+                printf("Two");
+                break;
+            default:
+                printf("None");
+                break;
+        }
+        ```
+    The break statement is used to exit the switch statement. If you don't use the break statement, all the cases after the matching case will be executed.
+
+    If inside a case you don't have any code to execute, you can use the empty statement.
+    ```c
+    case value:
+        ;
+        break;
+    ```
+
+    You can also have multiple cases for the same code.
+    ```c
+    case value1:
+    case value2:
+        // code
+        break;
+    ```
+
+    You can also have the switch statement without the variable. In this case, you have to use the goto statement to jump to the case. Goto is generally not recommended to use. Goto is used to jump to a specific line of code like in Assembly language.
+    ```c
+    switch (1) {
+        case 1:
+            printf("One");
+            goto end;
+        case 2:
+            printf("Two");
+            goto end;
+        default:
+            printf("None");
+            goto end;
+    }
+    end:
+    ```
+
+    If inside a case you have multiple lines of code to execute, you can use the block of code. But it is recommended to use braces to avoid confusion.
+    ```c
+    case value: {
+        // code
+        // code
+        break;
+    }
+    ```
+- **Loops**
+    - **While Loop**:
+        The while loop is used to execute a block of code as long as the condition is true.
+        ```c
+        while (condition) {
+            // code
+        }
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            while (a < 5) {
+                printf("%d\n", a);
+                a++;
+            }
+            ```
+    - **Do-While Loop**:
+        The do-while loop is used to execute a block of code at least once and then as long as the condition is true.
+        ```c
+        do {
+            // code
+        } while (condition);
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            do {
+                printf("%d\n", a);
+                a++;
+            } while (a < 5);
+            ```
+    - **For Loop**:
+        The for loop is used to execute a block of code a specific number of times.
+        ```c
+        for (initialization; condition; increment/decrement) {
+            // code
+        }
+        ```
+        - Example:
+            ```c
+            for (int i = 1; i < 5; i++) {
+                printf("%d\n", i);
+            }
+            ```
+        You can also have multiple initializations and multiple increment/decrement statements.
+        ```c
+        for (initialization1, initialization2; condition; increment1, increment2) {
+            // code
+        }
+        ```
+        - Example:
+            ```c
+            for (int i = 1, j = 1; i < 5; i++, j++) {
+                printf("%d %d\n", i, j);
+            }
+            ```
+        You can also have the empty for loop. But it is recommended to use while loop for this purpose.
+        ```c
+        for (; condition;) {
+            // code
+        }
+        ```
+        - Example:
+            ```c
+            int i = 1;
+            for (; i < 5;) {
+                printf("%d\n", i);
+                i++;
+            }
+            ```
+        You can also have the infinite for loop. But it is recommended to use while loop for infinite loops.
+        ```c
+        for (;;) {
+            // code
+        }
+        ```
+        - Example:
+            ```c
+            for (;;) {
+                printf("Infinite\n");
+            }
+            ```
+- **Break Statement**:
+    The break statement is used to exit the loop or switch statement.
+    ```c
+    break;
+    ```
+    - Example:
+        ```c
+        for (int i = 1; i < 5; i++) {
+            if (i == 3) {
+                break;
+            }
+            printf("%d\n", i);
+        }
+        ```
+- **Continue Statement**:
+    The continue statement is used to skip the current iteration of the loop and continue with the next iteration.
+    ```c
+    continue;
+    ```
+    - Example:
+        ```c
+        for (int i = 1; i < 5; i++) {
+            if (i == 3) {
+                continue;
+            }
+            printf("%d\n", i);
+        }
+        ```
+- **Goto Statement**:
+    The goto statement is used to jump to a specific line of code.
+    ```c
+    goto label;
+    ...
+    label:
+    ```
+    - Example:
+        ```c
+        int a = 1;
+        if (a == 1) {
+            goto end;
+        }
+        printf("Not true");
+        end:
+        printf("True");
+        ```
+        But in the above example, when a = 1 the code will jump to the end label and execute the code after the end label. So, the output will be "True". But when a = 2 the code will execute the code after the goto statement. So, the output will be "Not trueTrue", because the code after the end label will also be executed.
+        That is why goto is generally not recommended to use.
+    
+## Functions
+- **Declaration**:
+    When you want to declare a function you have to declare it before the main function. The declaration of the function is the prototype of the function. The prototype of the function includes the return type, the name of the function, and the parameters of the function. It is why it is recommended to use the function declaration in a header file (.h).
+    ```c
+    [returnType] [name]([parameters]);
+    ```
+    - Example:
+        ```c
+        // Declaration in a header file (.h) like add.h
+        int add(int a, int b);
+        ```
+- **Definition**:
+    The definition of the function is the implementation of the function. It includes the return type, the name of the function, the parameters of the function, and the body of the function. The body of the function is the code that will be executed when the function is called. The definition of the function is generally written after the main function. So you can define the function in any order you want. This is why you have to declare the function before in a header file (.h) and include it in the file where you want to define the function.
+    ```c
+    #include "add.h" // Include the header file where the function is declared
+    // Definition in the file where you want to define the function like add.c
+    [returnType] [name]([parameters]) {
+        // code
+    }
+    ```
+    - Example:
+        ```c
+        int add(int a, int b) {
+            return a + b;
+        }
+        ```
+- **Call**:
+    When you want to call a function you have to use the name of the function followed by the parameters of.
+    ```c
+    [name]([parameters]);
+    ```
+    - Example:
+        ```c
+        #include "add.h" // Include the header file where the function is declared
+        int main() {
+            int a = 1;
+            int b = 2;
+            int c = add(a, b); // Call the function
+            printf("%d\n", c);
+            return 0;
+        }
+        ```
+        This example works because the function add is declared in the header file add.h and defined in the file add.c. The main function is in the file main.c. The main function includes the header file add.h where the function add is declared. So, the main function knows the prototype of the function add. When the main function is compiled, the compiler knows the prototype of the function add. When the main function is executed, the function add is called. The compiler knows the definition of the function add because it is defined in the file add.c. So, the compiler can execute the function add. When you want to compile a code with multiple files, you have to compile all the files (.c) together. This is why the code above works.
+- **Return**:
+    The return statement is used to return a value from the function. The return statement is generally used at the end of the function. When the return statement is executed, the function will be terminated and the control will be returned to the calling function.
+    ```c
+    return [value];
+    ```
+    - Example:
+        ```c
+        int add(int a, int b) {
+            return a + b;
+        }
+        ```
+    You can also return nothing from the function. In this case, you have to use the void return type.
+    ```c
+    void [name]([parameters]) {
+        // code
+        return;
+    }
+    ```
+    - Example:
+        ```c
+        void print() {
+            printf("Hello World\n");
+            return;
+        }
+        ```
+## Pointers
