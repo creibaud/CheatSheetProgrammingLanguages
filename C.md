@@ -19,6 +19,9 @@
 - [Memory Management](#Memory-Management)
 - [Error Handling](#Error-Handling)
 - [Structures of the Project](#Structures-of-the-Project)
+- [Makefile](#Makefile)
+- [Doxygen](#Doxygen)
+- [Valgrind](#Valgrind)
 
 ## Variables
 - **Declaration**:
@@ -2066,3 +2069,81 @@ git-push:
 
 .PHONY: all compile-app compile-tests launch-app launch-tests doc clean-obj clean-exe clean-cvs clean-plot clean-generated clean-upload clean-doc full-clean git-push
 ```
+## Doxygen
+Doxygen is used to generate the documentation of the project. Doxygen is used to generate the documentation of the structures, enumerations, functions, etc...
+- **Installation**:
+    Before generating the documentation you have to install Doxygen. You can install Doxygen using the following command:
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install doxygen -y
+    ```
+- **In the Header file**:
+    When you want to generate the documentation you have to use the Doxygen comments. The Doxygen comments are used to describe the structures, enumerations, functions, etc...
+    ```c
+    /**
+     * @brief [description]
+     * @param [name] [description]
+     * @return [description]
+     */
+    ```
+    - Example:
+        ```c
+        /**
+         * @brief The Point structure
+         */
+        struct Point {
+            int x; /**< The x-coordinate */
+            int y; /**< The y-coordinate */
+        };
+
+        /**
+         * @brief The add function
+         * @param a The first operand
+         * @param b The second operand
+         * @return The sum of the operands
+         */
+        int add(int a, int b);
+        ```
+    The `@brief` tag is used to specify the description of the structure, enumeration, function, etc... The `@param` tag is used to specify the parameters of the function. The `@return` tag is used to specify the return value of the function.
+- **Configuration**:
+    The Doxyfile is used to configure the documentation of the project. The Doxyfile contains the configuration of the documentation.
+    ```doxyfile
+    PROJECT_NAME = [name]
+    OUTPUT_DIRECTORY = [directory]
+    INPUT = [directory]
+    ```
+    - Example:
+        ```doxyfile
+        PROJECT_NAME = Project
+        OUTPUT_DIRECTORY = doc
+        INPUT = include src
+        ```
+    The PROJECT_NAME is used to specify the name of the project. The OUTPUT_DIRECTORY is used to specify the directory of the documentation. The INPUT is used to specify the directories of the source files.
+- **Generation**:
+    When you want to generate the documentation you have to use the doxygen command. The doxygen command is used to generate the documentation of the project.
+    ```bash
+    doxygen [Doxyfile]
+    ```
+    - Example:
+        ```bash
+        doxygen Doxyfile
+        ```
+    The Doxyfile is used to configure the documentation of the project. The Doxyfile contains the configuration of the documentation.
+## Valgrind
+Valgrind is used to check the memory leaks of the project.
+- **Installation**:
+    Before checking the memory leaks you have to install Valgrind. You can install Valgrind using the following command:
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install valgrind -y
+    ```
+- **Launch**:
+    When you want to check the memory leaks you have to use the valgrind command. The valgrind command is used to check the memory leaks of the project.
+    ```bash
+    valgrind --leak-check=full --show-leak-kinds=all -s ./[executable]
+    ```
+    - Example:
+        ```bash
+        valgrind --leak-check=full --show-leak-kinds=all -s ./bin/main
+        ```
+    The `--leak-check=full` option is used to check the memory leaks of the project. The `--show-leak-kinds=all` option is used to show all the memory leaks of the project. The `-s` option is used to show the summary of the memory leaks.
