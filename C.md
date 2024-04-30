@@ -22,6 +22,7 @@
 - [Makefile](#Makefile)
 - [Doxygen](#Doxygen)
 - [Valgrind](#Valgrind)
+- [GDB](#GDB)
 
 ## Variables
 - **Declaration**:
@@ -2147,3 +2148,30 @@ Valgrind is used to check the memory leaks of the project.
         valgrind --leak-check=full --show-leak-kinds=all -s ./bin/main
         ```
     The `--leak-check=full` option is used to check the memory leaks of the project. The `--show-leak-kinds=all` option is used to show all the memory leaks of the project. The `-s` option is used to show the summary of the memory leaks.
+## GDB
+GDB is used to debug the project.
+- **Installation**:
+    Before debugging the project you have to install GDB. You can install GDB using the following command:
+    ```bash
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install gdb -y
+    ```
+- **Launch**:
+    When you want to debug the project you have to use the gdb command. The gdb command is used to debug the project.
+    ```bash
+    gdb ./[executable]
+    ```
+    - Example:
+        ```bash
+        gdb ./bin/main
+        ```
+    The `gdb` command is used to launch the GDB debugger. The `./[executable]` is used to specify the executable file of the project.
+- **Commands**:
+    When you are in the GDB debugger you have to use the following commands:
+    - `run` or `r` - Run the program
+    - `break [line]` or `b` - Set a breakpoint at the specified line
+    - `print [variable]` - Print the value of the specified variable
+    - `next` - Execute the next line of the program
+    - `step` or `s` - Execute the next line of the program and step into the function
+    - `continue` or `c` - Continue the execution of the program
+    - `exit` - Quit the GDB debugger
