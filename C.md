@@ -6,12 +6,14 @@
 - [Operators](#Operators)
 - [Control Statements](#Control-Statements)
 - [Functions](#Functions)
+- [Built-in Functions](#Built-in-Functions)
 - [Pointers](#Pointers)
 - [Arrays](#Arrays)
 - [Strings](#Strings)
 - [Structures](#Structures)
 - [Unions](#Unions)
 - [Enumerations](#Enumerations)
+- [Typedef](#Typedef)
 - [File Handling](#File-Handling)
 - [Preprocessor Directives](#Preprocessor-Directives)
 - [Memory Management](#Memory-Management)
@@ -156,23 +158,13 @@
             int arr[5];
             ```
     - **Pointer**:
-        - **Reference**:
+        ```c
+        [type] *[name];
+        ```
+        - Example:
             ```c
-            [type] *[name];
+            int *ptr;
             ```
-            - Example:
-                ```c
-                int *ptr;
-                ```
-        - **Dereference**:
-            ```c
-            [type] *[name] = &[variable];
-            ```
-            - Example:
-                ```c
-                int a = 1;
-                int *ptr = &a;
-                ```
     - **Structure**:
         ```c
         struct [name] {
@@ -778,4 +770,1027 @@
             return;
         }
         ```
+## Built-in Functions
+- **Input/Output Functions**
+    - **printf**:
+        The printf function is used to print the formatted output to the standard output (usually the screen).
+        ```c
+        printf("format", [arguments]);
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            printf("Hello World\n");
+            printf("Value: %d\n", a);
+            ```
+    - **scanf**:
+        The scanf function is used to read the formatted input from the standard input (usually the keyboard).
+        ```c
+        scanf("format", [arguments]);
+        ```
+        - Example:
+            ```c
+            int a;
+            scanf("%d", &a);
+            ```
+    - **Format**:
+        | Format | Description | Example |
+        | --- | --- | --- |
+        | `%d` or `%i` | Integer | 392 |
+        | `%u` | Unsigned decimal Integer | 7235 |
+        | `%o` | Unsigned octal | 610 |
+        | `%x` | Unsigned hexadecimal integer | 7fa |
+        | `%X` | Unsigned hexadecimal integer (uppercase) | 7FA |
+        | `%f` | Floating point | 392.65 |
+        | `%e` | Scientific notation | 3.9265e+2 |
+        | `%E` | Scientific notation (uppercase) | 3.9265E+2 |
+        | `%g` | Use the shortest representation: `%e` or `%f` | 392.65 |
+        | `%G` | Use the shortest representation: `%E` or `%f` | 392.65 |
+        | `%c` | Character | a |
+        | `%s` | String | sample |
+        | `%p` | Pointer address | b8000000 |
+        | `%n` | Nothing printed | - |
+        | `%%` | Print a % | % |
+
+        They are also other format specifiers like `%5-d` to print an integer with a width of 5 characters. You can also use the flags `+`, `-`, `0`, `#`, and space. You can also use the precision `%.2f` to print a floating-point number with 2 decimal places, etc...
+
+        - **Text Format**:
+            | Format | Description |
+            | --- | --- |
+            | `\n` | New line |
+            | `\t` | Tab |
+            | `\b` | Backspace |
+            | `\r` | Carriage return |
+            | `\\` | Backslash |
+            | `\"` | Double quote |
+            | `\'` | Single quote |
+            | `\0` | Null character |
+
+- **Math Functions**
+    Most of the math functions are defined in the math.h header file. So, you have to include the math.h header file to use the math functions.
+    ```c
+    - **abs**:
+        The abs function is used to return the absolute value of an integer.
+        ```c
+        abs([value]);
+        ```
+        - Example:
+            ```c
+            int a = -1;
+            int b = abs(a); // 1
+            ```
+    - **fabs**:
+        The fabs function is used to return the absolute value of a floating-point number.
+        ```c
+        fabs([value]);
+        ```
+        - Example:
+            ```c
+            float a = -1.5;
+            float b = fabs(a); // 1.5
+            ```
+    - **ceil**:
+        The ceil function is used to return the smallest integer value greater than or equal to a floating-point number.
+        ```c
+        ceil([value]);
+        ```
+        - Example:
+            ```c
+            float a = 1.5;
+            float b = ceil(a); // 2
+            ```
+    - **floor**:
+        The floor function is used to return the largest integer value less than or equal to a floating-point number.
+        ```c
+        floor([value]);
+        ```
+        - Example:
+            ```c
+            float a = 1.5;
+            float b = floor(a); // 1
+            ```
+    - **sqrt**:
+        The sqrt function is used to return the square root of a floating-point number.
+        ```c
+        sqrt([value]);
+        ```
+        - Example:
+            ```c
+            float a = 4;
+            float b = sqrt(a); // 2
+            ```
+    - **pow**:
+        The pow function is used to return the value of a number raised to the power of another number.
+        ```c
+        pow([base], [exponent]);
+        ```
+        - Example:
+            ```c
+            float a = 2;
+            float b = 3;
+            float c = pow(a, b); // 8
+            ```
+    - **log**:
+        The log function is used to return the natural logarithm of a floating-point number.
+        ```c
+        log([value]);
+        ```
+        - Example:
+            ```c
+            float a = 2.71828;
+            float b = log(a); // 1
+            ```
+
+- **String Functions**
+    Most of the string functions are defined in the string.h header file. So, you have to include the string.h header file to use the string functions.
+    - **strlen**:
+        The strlen function is used to return the length of a string.
+        ```c
+        strlen([string]);
+        ```
+        - Example:
+            ```c
+            char str[] = "Hello";
+            int len = strlen(str); // 5
+            ```
+    - **strcpy**:
+        The strcpy function is used to copy a string to another string.
+        ```c
+        strcpy([destination], [source]);
+        ```
+        - Example:
+            ```c
+            char str1[20];
+            char str2[] = "Hello";
+            strcpy(str1, str2);
+            ```
+    - **strcat**:
+        The strcat function is used to concatenate two strings.
+        ```c
+        strcat([destination], [source]);
+        ```
+        - Example:
+            ```c
+            char str1[20] = "Hello";
+            char str2[] = " World";
+            strcat(str1, str2);
+            ```
+    - **strcmp**:
+        The strcmp function is used to compare two strings.
+        ```c
+        strcmp([string1], [string2]);
+        ```
+        - Example:
+            ```c
+            char str1[] = "Hello";
+            char str2[] = "Hello";
+            int cmp = strcmp(str1, str2); // 0
+            ```
+    - **strchr**:
+        The strchr function is used to return the first occurrence of a character in a string.
+        ```c
+        strchr([string], [character]);
+        ```
+        - Example:
+            ```c
+            char str[] = "Hello";
+            char *ptr = strchr(str, 'l'); // llo
+            ```
+    - **strstr**:
+        The strstr function is used to return the first occurrence of a substring in a string.
+        ```c
+        strstr([string], [substring]);
+        ```
+        - Example:
+            ```c
+            char str[] = "Hello World";
+            char *ptr = strstr(str, "World"); // World
+            ```
 ## Pointers
+A pointer is a variable that stores the memory address of another variable. Pointers are used to store the address of variables, arrays, functions, etc... Pointers are used to pass the address of variables to functions, to access the memory directly, to allocate memory dynamically, etc...
+
+- **Referencing**:
+    Referencing is the process of obtaining the memory address of a variable.
+    This is done using the address-of operator (&). For example, if you have a variable x, you can obtain its memory address using &x.
+    The result of referencing is a pointer, which holds the memory address of the variable.
+    ```c
+    int x = 10;
+    int *ptr = &x; // Referencing the variable x
+
+    printf("%d\n", x); // 10
+    printf("%p\n", &x); // 0x7ffebc1f3bfc
+
+    printf("%d\n", *ptr); // 10
+    printf("%p\n", ptr); // 0x7ffebc1f3bfc
+    ```
+- **Dereferencing**:
+    Dereferencing is the process of accessing the value stored at a memory address pointed to by a pointer.
+    This is done using the dereference operator (*). For example, if you have a pointer ptr that points to a variable, you can access the value of that variable using *ptr.
+    Dereferencing allows you to manipulate the value stored at a particular memory address indirectly through a pointer.
+    ```c
+    int x = 10;
+    int *ptr = &x;
+
+    printf("%d\n", x); // 10
+    printf("%p\n", &x); // 0x7ffebc1f3bfc
+
+    printf("%d\n", *ptr); // 10
+    printf("%p\n", ptr); // 0x7ffebc1f3bfc
+
+    *ptr = 20; // Dereferencing the pointer and changing the value of x
+
+    printf("%d\n", x); // 20
+    printf("%p\n", &x); // 0x7ffebc1f3bfc
+
+    printf("%d\n", *ptr); // 20
+    printf("%p\n", ptr); // 0x7ffebc1f3bfc
+    ```
+- **Pointer Arithmetic**:
+    Pointer arithmetic is the process of performing arithmetic operations on pointers.
+    When you perform arithmetic operations on pointers, the result is determined by the size of the data type the pointer points to.
+    For example, if you have a pointer to an integer, incrementing the pointer by 1 will move it to the next integer in memory, which is 4 bytes away.
+    ```c
+    int arr[] = {10, 20, 30, 40, 50};
+    int *ptr = arr;
+
+    printf("%d\n", *ptr); // 10
+    printf("%d\n", *(ptr + 1)); // 20
+    printf("%d\n", *(ptr + 2)); // 30
+    printf("%d\n", *(ptr + 3)); // 40
+    printf("%d\n", *(ptr + 4)); // 50
+    ```
+- **Pointer to Pointer**:
+    A pointer to a pointer is a pointer that holds the memory address of another pointer.
+    Pointer to pointer is used to store the address of a pointer variable.
+    ```c
+    int x = 10;
+    int *ptr1 = &x;
+    int **ptr2 = &ptr1;
+
+    printf("%d\n", x); // 10
+    printf("%p\n", &x); // 0x7ffebc1f3bfc
+
+    printf("%d\n", *ptr1); // 10
+    printf("%p\n", ptr1); // 0x7ffebc1f3bfc
+
+    printf("%d\n", **ptr2); // 10
+    printf("%p\n", *ptr2); // 0x7ffebc1f3bfc
+    printf("%p\n", ptr2); // 0x7ffebc1f3bf8
+    ```
+- **Pointer to Function**:
+    A pointer to a function is a pointer that holds the memory address of a function.
+    Pointer to function is used to store the address of a function.
+    ```c
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int (*ptr)(int, int) = add;
+
+    printf("%d\n", add(10, 20)); // 30
+    printf("%d\n", ptr(10, 20)); // 30
+    ```
+- **Pointer to Array**:
+    A pointer to an array is a pointer that holds the memory address of the first element of an array.
+    Pointer to array is used to store the address of an array.
+    This is mostly the same thing as pointer arithmetic.
+
+    - **Difference**:
+        - **Pointer to array**: Points to the entire array, not just to a single element. The pointer itself knows the size of the array it points to.
+        - **Pointer arithmetic**: Involves manipulating the address stored in a pointer based on the size of the data type it points to. It's commonly used for iterating through arrays or navigating memory.
+
+    ```c
+    int arr[] = {10, 20, 30, 40, 50};
+    int arr[5] = {1, 2, 3, 4, 5};
+    int (*ptr)[5] = &arr;
+
+    printf("%d\n", (*ptr)[0]); // 10
+    printf("%d\n", (*ptr)[1]); // 20
+    printf("%d\n", (*ptr)[2]); // 30
+    printf("%d\n", (*ptr)[3]); // 40
+    printf("%d\n", (*ptr)[4]); // 50
+    ```
+- **Pointer to Structure**:
+    A pointer to a structure is a pointer that holds the memory address of a structure.
+    Pointer to structure is used to store the address of a structure.
+    ```c
+    struct Point {
+        int x;
+        int y;
+    };
+
+    struct Point p = {10, 20};
+    struct Point *ptr = &p;
+
+    printf("%d\n", p.x); // 10
+    printf("%d\n", p.y); // 20
+
+    printf("%d\n", ptr->x); // 10
+    printf("%d\n", ptr->y); // 20
+    ```
+    The arrow operator (`->`) is used to access the members of a structure through a pointer to a structure. Because the arrow operator is a shorthand for dereferencing a pointer and accessing a member of a structure.
+    It is equivalent to `(*ptr).x`.
+- **Pointer to Union**:
+    A pointer to a union is a pointer that holds the memory address of a union.
+    Pointer to union is used to store the address of a union.
+    Same as the pointer to structure.
+    ```c
+    union Data {
+        int i;
+        float f;
+        char str[20];
+    };
+
+    union Data data;
+    union Data *ptr = &data;
+
+    data.i = 10;
+    printf("%d\n", data.i); // 10
+
+    ptr->i = 20;
+    printf("%d\n", ptr->i); // 20
+    ```
+- **Pointer to Void**:
+    A pointer to void is a pointer that holds the memory address of a variable of any data type.
+    Pointer to void is used to store the address of a variable of any data type.
+    ```c
+    int x = 10;
+    float y = 20.5;
+    char z = 'a';
+
+    void *ptr1 = &x;
+    void *ptr2 = &y;
+    void *ptr3 = &z;
+
+    printf("%d\n", *(int *)ptr1); // 10
+    printf("%f\n", *(float *)ptr2); // 20.5
+    printf("%c\n", *(char *)ptr3); // a
+    ```
+    The void pointer is a generic pointer that can point to any data type. But you have to cast the void pointer to the appropriate data type before dereferencing it.
+    The cast operator (`(type)`) is used to convert a void pointer to a specific data type. The syntax is `(type)ptr`.
+- **Pointer to Constant**:
+    A pointer to a constant is a pointer that points to a constant value.
+    Pointer to constant is used to store the address of a constant value.
+    ```c
+    int x = 10;
+    const int *ptr = &x;
+
+    printf("%d\n", *ptr); // 10
+
+    x = 20;
+    printf("%d\n", *ptr); // 20
+
+    *ptr = 30; // Error
+    ```
+    The pointer to a constant is used to prevent the value of a constant from being changed through the pointer. The value of the constant can be changed directly, but not through the pointer.
+- **Dynamic Pointer**:
+    A dynamic pointer is a pointer that points to memory allocated dynamically.
+    Dynamic pointer is used to store the address of memory allocated dynamically.
+    ```c
+    int *ptr = (int *)malloc(sizeof(int));
+
+    *ptr = 10;
+    printf("%d\n", *ptr); // 10
+
+    free(ptr);
+    ```
+    The malloc function is used to allocate memory dynamically. The sizeof operator is used to determine the size of the data type. The free function is used to deallocate memory.
+## Arrays
+An array is a collection of elements of the same data type stored in contiguous memory locations. Arrays are used to store multiple values of the same data type.
+
+- **Declaration**:
+    When you want to declare an array you have to specify the data type of the elements and the size of the array.
+    ```c
+    [type] [name][size];
+    ```
+    - Example:
+        ```c
+        int arr[5];
+        ```
+- **Initialization**:
+    When you want to initialize an array you have to specify the data type of the elements, the size of the array, and the values of the elements.
+    ```c
+    [type] [name][size] = {[values]};
+    ```
+    - Example:
+        ```c
+        int arr[5] = {1, 2, 3, 4, 5};
+        ```
+    You can also initialize an array without specifying the size.
+    ```c
+    [type] [name][] = {[values]};
+    ```
+    - Example:
+        ```c
+        int arr[] = {1, 2, 3, 4, 5};
+        ```
+    You can also initialize an array without specifying the values.
+    ```c
+    [type] [name][size];
+    name[0] = value;
+    name[1] = value;
+    ```
+    - Example:
+        ```c
+        int arr[5];
+        arr[0] = 1;
+        arr[1] = 2;
+        ```
+- **Access**:
+    When you want to access an element of an array you have to specify the name of the array and the index of the element.
+    ```c
+    [name][index];
+    ```
+    - Example:
+        ```c
+        int arr[5] = {1, 2, 3, 4, 5};
+        printf("%d\n", arr[0]); // 1
+        printf("%d\n", arr[1]); // 2
+        ```
+- **Size**:
+    When you want to get the size of an array you have to use the sizeof operator.
+    ```c
+    sizeof([name]) / sizeof([name][0]);
+    ```
+    - Example:
+        ```c
+        int arr[5] = {1, 2, 3, 4, 5};
+        int size = sizeof(arr) / sizeof(arr[0]); // 5
+        ```
+    The sizeof operator is used to determine the size of the element in bytes. So, the size of the array divided by the size of the element gives the number of elements in the array. For example, if the size of the array is 20 bytes and the size of the element is 4 bytes, then the number of elements in the array is 5.
+- **Multidimensional Arrays**:
+    A multidimensional array is an array of arrays. It is used to store data in multiple dimensions.
+    - **Declaration**:
+        When you want to declare a multidimensional array you have to specify the data type of the elements and the size of each dimension.
+        ```c
+        [type] [name][size1][size2];
+        ```
+        - Example:
+            ```c
+            int arr[2][3];
+            ```
+    - **Initialization**:
+        When you want to initialize a multidimensional array you have to specify the data type of the elements, the size of each dimension, and the values of the elements.
+        ```c
+        [type] [name][size1][size2] = {[values]};
+        ```
+        - Example:
+            ```c
+            int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+            ```
+    - **Access**:
+        When you want to access an element of a multidimensional array you have to specify the name of the array and the indices of the element.
+        ```c
+        [name][index1][index2];
+        ```
+        - Example:
+            ```c
+            int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+            printf("%d\n", arr[0][0]); // 1
+            printf("%d\n", arr[0][1]); // 2
+            ```
+    - **Size**:
+        When you want to get the size of a multidimensional array you have to use the sizeof operator.
+        ```c
+        sizeof([name][dimension]) / sizeof([name][dimension][0]);
+        ```
+        - Example:
+            ```c
+            int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+            int size1 = sizeof(arr) / sizeof(arr[0]); // 2
+            int size2 = sizeof(arr[0]) / sizeof(arr[0][0]); // 3
+            ```
+- **Array of Pointers**:
+    An array of pointers is an array that stores the memory addresses of variables.
+    Array of pointers is used to store the addresses of variables.
+    - **Declaration**:
+        When you want to declare an array of pointers you have to specify the data type of the elements and the size of the array.
+        ```c
+        [type] *[name][size];
+        ```
+        - Example:
+            ```c
+            int *arr[5];
+            ```
+    - **Initialization**:
+        When you want to initialize an array of pointers you have to specify the data type of the elements, the size of the array, and the values of the elements.
+        ```c
+        [type] *[name][size] = {[values]};
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            int b = 2;
+            int c = 3;
+            int d = 4;
+            int e = 5;
+            int *arr[5] = {&a, &b, &c, &d, &e};
+            ```
+    - **Access**:
+        When you want to access an element of an array of pointers you have to specify the name of the array and the index of the element.
+        ```c
+        *[name][index];
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            int b = 2;
+            int c = 3;
+            int d = 4;
+            int e = 5;
+            int *arr[5] = {&a, &b, &c, &d, &e};
+            printf("%d\n", *arr[0]); // 1
+            printf("%d\n", *arr[1]); // 2
+            ```
+    - **Size**:
+        When you want to get the size of an array of pointers you have to use the sizeof operator.
+        ```c
+        sizeof([name]) / sizeof([name][0]);
+        ```
+        - Example:
+            ```c
+            int a = 1;
+            int b = 2;
+            int c = 3;
+            int d = 4;
+            int e = 5;
+            int *arr[5] = {&a, &b, &c, &d, &e};
+            int size = sizeof(arr) / sizeof(arr[0]);
+## Strings
+A string is a sequence of characters stored in contiguous memory locations. Strings are used to store text data.
+- **Declaration**:
+    When you want to declare a string you have to specify the data type of the elements and the size of the array.
+    ```c
+    [type] [name][size];
+    ```
+    - Example:
+        ```c
+        char str[20];
+        ```
+- **Initialization**:
+    When you want to initialize a string you have to specify the data type of the elements, the size of the array, and the values of the elements.
+    ```c
+    [type] [name][size] = "[values]";
+    ```
+    - Example:
+        ```c
+        char str[20] = "Hello World";
+        ```
+    You can also initialize a string without specifying the size.
+    ```c
+    [type] [name][] = "[values]";
+    ```
+    - Example:
+        ```c
+        char str[] = "Hello World";
+        ```
+    You can also initialize a string without specifying the values.
+    ```c
+    [type] [name][size];
+    name[0] = 'H';
+    name[1] = 'e';
+    ```
+    - Example:
+        ```c
+        char str[20];
+        str[0] = 'H';
+        str[1] = 'e';
+        ```
+As you can see, a string is an array of characters. So, you can access the characters of a string using the same syntax as an array.
+You can also use the string.h header file to use the string functions.
+## Structures
+A structure is a user-defined data type that allows you to group related data items of different data types. Structures are used to store data in a structured way.
+- **Declaration**:
+    When you want to declare a structure you have to specify the keyword struct followed by the name of the structure and the members of the structure.
+    Like a function, you have to declare the structure before the main function. The declaration of the structure is the prototype of the structure. So you have to declare the structure in a header file (.h) and include it in the file where you want to define the structure.
+    ```c
+    // Declaration in a header file (.h) like point.h
+    struct [name] {
+        [type] [member1];
+        [type] [member2];
+        ...
+    };
+    ```
+    - Example:
+        ```c
+        struct Point {
+            int x;
+            int y;
+        };
+        ```
+- **Initialization**:
+    When you want to initialize a structure you have to specify the name of the structure, the variable of the structure, and the values of the members of the structure.
+    ```c
+    struct [name] [variable] = {[values]};
+    ```
+    - Example:
+        ```c
+        struct Point p = {10, 20};
+        ```
+    You can also initialize a structure without specifying the values.
+    ```c
+    struct [name] [variable];
+    variable.[member1] = [value1];
+    variable.[member2] = [value2];
+    ```
+    - Example:
+        ```c
+        struct Point p;
+        p.x = 10;
+        p.y = 20;
+        ```
+- **Access**:
+    When you want to access a member of a structure you have to specify the name of the structure followed by the member of the structure.
+    ```c
+    [variable].[member];
+    ```
+    - Example:
+        ```c
+        struct Point p = {10, 20};
+        printf("%d\n", p.x); // 10
+        printf("%d\n", p.y); // 20
+        ```
+    But you can also access the members of a structure using the arrow operator (`->`) when you have a pointer to a structure.
+    ```c
+    [pointer]->[member];
+    ```
+    - Example:
+        ```c
+        struct Point p = {10, 20};
+        struct Point *ptr = &p;
+        printf("%d\n", ptr->x); // 10
+        printf("%d\n", ptr->y); // 20
+        ```
+- **Size**:
+    When you want to get the size of a structure you have to use the sizeof operator.
+    ```c
+    sizeof([name]);
+    ```
+    - Example:
+        ```c
+        struct Point {
+            int x;
+            int y;
+        };
+        int size = sizeof(struct Point); // 8
+        ```
+    The size of a structure is the sum of the sizes of its members.
+## Unions
+A union is a user-defined data type that allows you to store different data types in the same memory location. Unions are used to store data in a memory-efficient way.
+It is similar to a structure, but the memory allocated for a union is the size of the largest member.
+The use is the same as the structure.
+Unions are not commonly used because they are not type-safe.
+## Enumerations
+An enumeration is a user-defined data type that allows you to define a set of named integer constants. Enumerations are used to store a set of related constants.
+- **Declaration**:
+    When you want to declare an enumeration you have to specify the keyword enum followed by the name of the enumeration and the constants of the enumeration.
+    Like a structure, you have to declare the enumeration before the main function. The declaration of the enumeration is the prototype of the enumeration. So you have to declare the enumeration in a header file (.h) and include it in the file where you want to use it. Because 
+    ```c
+    // Declaration in a header file (.h) like color.h
+    enum [name] {
+        [constant1],
+        [constant2],
+        ...
+    };
+    ```
+    - Example:
+        ```c
+        enum Color {
+            RED, // 0
+            GREEN, // 1
+            BLUE // 2
+        };
+        ```
+    You can also specify the values of the constants of the enumeration.
+    ```c
+    enum [name] {
+        [constant1] = [value1],
+        [constant2] = [value2],
+        ...
+    };
+    ```
+    - Example:
+        ```c
+        enum Color {
+            RED = 1,
+            GREEN = 4,
+            BLUE = 7
+        };
+        ```
+    You can also change the default start of the enumeration.
+    ```c
+    enum [name] {
+        [constant1] = [value1],
+        [constant2],
+        ...
+    };
+    ```
+    - Example:
+        ```c
+        enum Color {
+            RED = 1,
+            GREEN, // 2
+            BLUE // 3
+        };
+        ```
+    And you can also put char constants in the enumeration. NOT STRINGS!
+    ```c
+    enum [name] {
+        [constant1] = [value1],
+        [constant2] = [value2],
+        ...
+    };
+    ```
+    - Example:
+        ```c
+        enum Color {
+            RED = 'R', // 'R' = 82
+            GREEN = 'G', // 'G' = 71
+            BLUE = 'B' // 'B' = 66
+        };
+        ```
+- **Initialization**:
+    When you want to initialize an enumeration you have to specify the name of the enumeration, the variable of the enumeration, and the constant of the enumeration.
+    ```c
+    enum [name] [variable] = [constant];
+    ```
+    - Example:
+        ```c
+        enum Color c = RED; // c = 0
+        ```
+The use of enumerations is to make the code more readable and maintainable. Because you can use the constants of the enumeration instead of the integer values.
+## Typedef
+The typedef keyword is used to create an alias for a data type. Typedef is used to define a new data type that can be used to declare variables.
+- **Declaration**:
+    When you want to declare a typedef you have to specify the keyword typedef followed by the data type and the alias of the data type.
+    ```c
+    typedef [type] [alias];
+    ```
+    - Example:
+        ```c
+        typedef int Number;
+        ```
+You commonly use typedef with structures and enumerations to make the code more readable and maintainable.
+```c
+typedef struct p {
+    int x;
+    int y;
+} Point;
+```
+In this example, the alias Point is used to declare variables of the structure p. So you can use the alias `Point` instead of the `struct p`.
+You can also use typedef with anonymous structures and enumerations.
+```c
+typedef struct {
+    int x;
+    int y;
+} Point;
+```
+## File Handling
+File handling is used to read from and write to files. Files are used to store data permanently. Files are used to store data that can be accessed later.
+
+- **Opening a File**:
+    When you want to open a file you have to use the fopen function. The fopen function is used to open a file and return a file pointer.
+    ```c
+    fopen("[filename]", "[mode]");
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "w");
+        ```
+    The mode parameter is used to specify the mode in which the file is opened. There are different modes to open a file:
+    | Mode | Description |
+    | --- | --- |
+    | r | Open a file for reading. The file must exist. |
+    | w | Open a file for writing. If the file exists, it is truncated. If the file does not exist, it is created. |
+    | a | Open a file for appending. If the file exists, the data is written at the end of the file. If the file does not exist, it is created. |
+    | r+ | Open a file for reading and writing. The file must exist. |
+    | w+ | Open a file for reading and writing. If the file exists, it is truncated. If the file does not exist, it is created. |
+    | a+ | Open a file for reading and writing. If the file exists, the data is written at the end of the file. If the file does not exist, it is created. |
+- **Closing a File**:
+    When you want to close a file you have to use the fclose function. The fclose function is used to close a file.
+    ```c
+    fclose([file]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "w");
+        fclose(file);
+        ```
+- **Reading from a File**:
+    When you want to read from a file you have to use the fscanf function. The fscanf function is used to read formatted input from a file.
+    ```c
+    fscanf([file], "format", [arguments]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        int a;
+        fscanf(file, "%d", &a);
+        ```
+- **Writing to a File**:
+    When you want to write to a file you have to use the fprintf function. The fprintf function is used to write formatted output to a file.
+    ```c
+    fprintf([file], "format", [arguments]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "w");
+        int a = 10;
+        fprintf(file, "%d", a);
+        ```
+- **Checking the End of a File**:
+    When you want to check the end of a file you have to use the feof function. The feof function is used to check the end-of-file indicator.
+    ```c
+    feof([file]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        while (!feof(file)) {
+            int a;
+            fscanf(file, "%d", &a);
+        }
+        ```
+- **Checking the Error of a File**:
+    When you want to check the error of a file you have to use the ferror function. The ferror function is used to check the error indicator.
+    ```c
+    ferror([file]);
+    ```
+    - Example:
+        ```c
+        FILE *file = fopen("file.txt", "r");
+        if (ferror(file)) {
+            printf("Error\n");
+        }
+        ```
+## Preprocessor Directives
+Preprocessor directives are used to include header files, define macros, and perform conditional compilation. Preprocessor directives are used to modify the source code before it is compiled.
+- **Include**:
+    The include directive is used to include a header file in the source code.
+    ```c
+    #include <[header]>;
+    ```
+    - Example:
+        ```c
+        #include <stdio.h>
+        ```
+    You can also include a header file that you have created.
+    ```c
+    #include "[header]";
+    ```
+    - Example:
+        ```c
+        #include "point.h"
+        ```
+- **Define**:
+    The define directive is used to define a macro in the source code.
+    ```c
+    #define [name] [value];
+    ```
+    - Example:
+        ```c
+        #define PI 3.14159
+        ```
+    You can also define a macro with arguments.
+    ```c
+    #define [name]([arguments]) [value];
+    ```
+    - Example:
+        ```c
+        #define SQUARE(x) ((x) * (x))
+        ```
+- **If**:
+    The if directive is used to perform conditional compilation in the source code.
+    ```c
+    #if [condition]
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #if PI > 3
+        printf("PI is greater than 3\n");
+        #endif
+        ```
+    You can also use the else directive to perform conditional compilation.
+    ```c
+    #if [condition]
+    ...
+    #else
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #if PI > 3
+        printf("PI is greater than 3\n");
+        #else
+        printf("PI is less than or equal to 3\n");
+        #endif
+        ```
+    You can also use the elif directive to perform conditional compilation.
+    ```c
+    #if [condition1]
+    ...
+    #elif [condition2]
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #if PI > 3
+        printf("PI is greater than 3\n");
+        #elif PI < 3
+        printf("PI is less than 3\n");
+        #endif
+        ```
+- **Ifdef**:
+    The ifdef directive is used to perform conditional compilation if a macro is defined.
+    ```c
+    #ifdef [name]
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #ifdef PI
+        printf("PI is defined\n");
+        #endif
+        ```
+    You can also use the ifndef directive to perform conditional compilation if a macro is not defined.
+    ```c
+    #ifndef [name]
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #ifndef PI
+        printf("PI is not defined\n");
+        #endif
+        ```
+- **Ifndef**:
+    The ifndef directive is used to perform conditional compilation if a macro is not defined.
+    ```c
+    #ifndef [name]
+    ...
+    #endif
+    ```
+    - Example:
+        ```c
+        #ifndef PI
+        #define PI 3.14159
+        #endif
+        ```
+- **pragma**:
+    The pragma directive is used to provide additional information to the compiler.
+    ```c
+    #pragma [directive];
+    ```
+    - Example:
+        ```c
+        #pragma once
+        ```
+    The once directive is used to include a header file only once in the source code.
+**IMPORTANT!** The preprocessor directives are executed before the source code is compiled. So, the preprocessor directives are used to modify the source code before it is compiled.
+So when you whant to define a macro like the struct, enum, function, etc... that you want for your project you have to use the preprocessor directives. This type of macro are defined in the header file (.h) and included in the source file (.c) and they are defined ONCE in the project.
+So you have two options to define this type of macro:
+- **pragma once**:
+    The pragma once directive is used to include a header file only once in the source code.
+    ```c
+    #pragma once
+    ```
+    The problem with this directive is that it is not supported by all compilers.
+- **ifndef**:
+    The ifndef directive is used to perform conditional compilation if a macro is not defined.
+    ```c
+    #ifndef [name]
+    #define [name]
+    ...
+    #endif // [name]
+    ```
+    - Example:
+        ```c
+        #ifndef POINT_H
+        #define POINT_H
+
+        struct Point {
+            int x;
+            int y;
+        };
+
+        #endif // POINT_H
+        ```
+    This is the most common way to define a macro in the header file. The macro is defined only once in the project.
+## Memory Management
+Memory management is used to allocate and deallocate memory dynamically. Memory management is used to allocate memory at runtime and deallocate memory when it is no longer needed.
+- **Allocation**:
+    When you want to allocate memory you have to use the malloc function. The malloc function is used to allocate memory dynamically.
+    ```c
+    malloc([size]);
+    ```
+    - Example:
+        ```c
+        int *ptr = (int *)malloc(sizeof(int));
+        ```
+    The size parameter is used to specify the size of the memory to be allocated. The sizeof operator is used to determine the size of the data type.
