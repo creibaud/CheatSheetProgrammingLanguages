@@ -18,7 +18,7 @@
 - [Error Handling](#Error-Handling)
 - [Miscellaneous](#Miscellaneous)
 
-## Variables <a name="Variables"></a>
+## Variables
 - **Declaration**:
     ```c
     [type] [name];
@@ -63,7 +63,7 @@
 - **Global Variable**:
     Same as local variable but declared outside of any function (at the top of the file and generally before the main function or in a header file).
 
-## Data Types <a name="Data-Types"></a>
+## Data Types
 - **Basic Data Types**:
     - **Description**:
         | Type | Description | Size | Range |
@@ -220,7 +220,7 @@
                 BLUE
             };
             ```
-## Operators <a name="Operators"></a>
+## Operators
 - **Arithmetic Operators**
     - **+**:
         Addition
@@ -427,4 +427,4 @@
             ```c
             int a = 5 >> 1; // 2
             ```
-## Control Statements <a name="Control-Statements"></a>
+## Control Statements
